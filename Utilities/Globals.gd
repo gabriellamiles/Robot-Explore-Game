@@ -10,12 +10,18 @@ var joystick_loaded = false
 var is_joystick_enabled = true
 var joystick
 
-
-#####
+##### Global look up table for materials
+var materials = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	##### Global look up table for materials
+	var file = File.new()
+	file.open("res://Data/materials.csv", file.READ)
+	while !file.eof_reached():
+		var csv = file.get_csv_line()
+		if csv.size() > 1:
+			materials[csv[0]] = csv[1]
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
