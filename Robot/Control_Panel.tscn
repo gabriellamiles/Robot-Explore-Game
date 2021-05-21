@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Robot/Control_Panel.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/sensor_frame.jpg" type="Texture" id=2]
 [ext_resource path="res://Sensors/Sensor_HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Fonts/Born2bSportyV2.tres" type="DynamicFont" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -145,6 +146,24 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 470.0
 margin_bottom = 240.0
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -63.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "Texture info"
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DebugTools" type="Control" parent="MarginContainer/Panel"]
 margin_left = 816.858

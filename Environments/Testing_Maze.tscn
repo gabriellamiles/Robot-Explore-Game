@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Environments/LoadEnvironment.gd" type="Script" id=1]
 [ext_resource path="res://Robot/Robot_with_sensors.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Textures/stone.png" type="Texture" id=3]
 
 [sub_resource type="Environment" id=1]
 background_energy = 3.66
@@ -59,6 +60,7 @@ size = Vector3( 3, 3, 3 )
 
 [sub_resource type="SpatialMaterial" id=15]
 albedo_color = Color( 0.788235, 0.0509804, 0.0509804, 1 )
+albedo_texture = ExtResource( 3 )
 
 [sub_resource type="BoxShape" id=16]
 extents = Vector3( 1.5, 1.5, 1.5 )

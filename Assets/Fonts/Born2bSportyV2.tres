@@ -1,7 +1,8 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Fonts/Born2bSportyV2.ttf" type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Fonts/Born2bSportyV2.ttf"
 
 [resource]
-size = 32
-font_data = ExtResource( 1 )
+size = 18
+font_data = SubResource( 1 )

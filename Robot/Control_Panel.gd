@@ -4,6 +4,7 @@ extends Control
 onready var hud1 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel/MarginContainer/HUD1
 onready var hud2 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel2/MarginContainer/HUD2
 onready var hud3 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3
+onready var label_hud3 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/Label
 
 onready var hud_to_id = [hud1, hud2, hud3]
 
@@ -29,6 +30,9 @@ func _process(delta):
 			var texture = sclass.render_view()
 			if texture != null:
 				_render_texture_to_hud(texture, hud)
+				if i == 2: # whisker
+					var text = sclass.render_label()
+					_render_label_to_hud(text, label_hud3)
 			
 			if sensor_descriptions != null:
 				var sdesc = sensor_descriptions[i]
@@ -49,6 +53,9 @@ func _render_texture_to_hud(texture, hud):
 	itex.create_from_image(image)
 	
 	hud.set_render_target(itex)
+	
+func _render_label_to_hud(text, label):
+	label.set_text(text)
 
 func _on_toggle_background_button(button):
 	var bg = $MarginContainer/Panel/Background
