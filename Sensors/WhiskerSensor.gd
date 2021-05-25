@@ -4,6 +4,8 @@ onready var bodies = []
 onready var register = false
 onready var globals = get_node("/root/Globals")
 
+signal whisk_sense_new
+
 func _ready():
 	type = "whiskers"
 
@@ -12,9 +14,14 @@ func _process(delta):
 
 func _on_Area_body_entered(body):
 	bodies.append(body)
-	if not register and bodies.size() == 2:
+	
+	if not register and bodies.size() == 2: 
 		register = true
 		bodies.clear()
+		return
+	
+	if register:
+		emit_signal("whisk_sense_new")
 
 func _on_Area_body_exited(body):
 	if body in bodies:
@@ -45,3 +52,4 @@ func render_label():
 	else:
 		return ""
 	
+

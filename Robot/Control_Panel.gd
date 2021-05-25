@@ -4,14 +4,16 @@ extends Control
 onready var hud1 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel/MarginContainer/HUD1
 onready var hud2 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel2/MarginContainer/HUD2
 onready var hud3 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3
-onready var label_hud3 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/Label
+onready var label_hud3 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/Texture_info
+onready var hud3_texture = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer/Texture_display
 
 onready var hud_to_id = [hud1, hud2, hud3]
 
 var sensor_to_class = null
 var sensor_descriptions = null
 
-# Called when the node enters the scene tree for the first time.
+onready var whisker_anim = 	$MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer/Texture_display/Whisker_animation
+
 func _ready():
 	var globals = get_node('/root/Globals')
 	globals.show_joystick()
@@ -29,11 +31,22 @@ func _process(delta):
 				
 			var texture = sclass.render_view()
 			if texture != null:
-				_render_texture_to_hud(texture, hud)
+				
 				if i == 2: # whisker
 					var text = sclass.render_label()
+					if text =="":
+						label_hud3.visible = false
+					else:
+						label_hud3.visible = true
+						if whisker_anim.animation == "reveal":
+							text = "New tactile data..."
+						else:
+							text = "Material = " + text
+						
 					_render_label_to_hud(text, label_hud3)
-			
+					hud3_texture.texture = texture
+				else:
+					_render_texture_to_hud(texture, hud)
 			if sensor_descriptions != null:
 				var sdesc = sensor_descriptions[i]
 				hud.set_text(sdesc)
@@ -63,3 +76,15 @@ func _on_toggle_background_button(button):
 
 func _on_ToggleHuds_toggled(button_pressed):
 	$MarginContainer/Panel/MarginContainer.visible = button_pressed
+
+
+
+func _on_WhiskerSensor_whisk_sense_new():
+	whisker_anim.rotation_degrees = randi()%4*90
+	whisker_anim.flip_v  = bool(randi()%2)
+	whisker_anim.flip_h  = bool(randi()%2)
+	whisker_anim.play("reveal")
+	
+func _on_Whisker_animation_animation_finished():
+	whisker_anim.play("idle")
+

@@ -51,5 +51,6 @@ transform = Transform( -6.01693e-10, -0.799643, 0.00641879, 0.0151881, -3.85669e
 mesh = SubResource( 2 )
 material/0 = null
 
+[connection signal="whisk_sense_new" from="." to="." method="_on_Whiskers_whisk_sense_new"]
 [connection signal="body_entered" from="CollisionShape2/Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="CollisionShape2/Area" to="." method="_on_Area_body_exited"]

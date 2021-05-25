@@ -1,15 +1,45 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Robot/Control_Panel.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/sensor_frame.jpg" type="Texture" id=2]
 [ext_resource path="res://Sensors/Sensor_HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Fonts/Born2bSportyV2.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_8.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_10.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_3.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_6.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_12.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_15.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_7.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_0.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_14.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_5.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_9.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_11.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_4.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Images/whisker_reveal_overlay/reveal_sweep_13.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Textures/stone.png" type="Texture" id=21]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 334, 212 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 19 ), ExtResource( 16 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 17 ), ExtResource( 6 ), ExtResource( 18 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 15 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "reveal",
+"speed": 18.0
+} ]
 
 [node name="ControlPanel" type="Control"]
 anchor_right = 1.0
@@ -147,14 +177,11 @@ anchor_bottom = 0.0
 margin_right = 470.0
 margin_bottom = 240.0
 
-[node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
-anchor_left = 1.0
-anchor_top = 0.5
+[node name="Texture_info" type="Label" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+anchor_left = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -95.0
-margin_top = -63.0
-margin_bottom = 63.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
@@ -164,6 +191,34 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.95
+rect_min_size = Vector2( 100, 100 )
+stretch_mode = 1
+alignment_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture_display" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer"]
+margin_right = 204.0
+margin_bottom = 204.0
+texture = ExtResource( 21 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Whisker_animation" type="AnimatedSprite" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer/Texture_display"]
+position = Vector2( 102, 102 )
+scale = Vector2( 0.41, 0.41 )
+frames = SubResource( 3 )
+animation = "idle"
 
 [node name="DebugTools" type="Control" parent="MarginContainer/Panel"]
 margin_left = 816.858
@@ -201,6 +256,7 @@ margin_bottom = 40.8909
 pressed = true
 text = "Toggle HUD"
 
+[connection signal="animation_finished" from="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer/Texture_display/Whisker_animation" to="." method="_on_Whisker_animation_animation_finished"]
 [connection signal="pressed" from="MarginContainer/Panel/DebugTools/CheckButton" to="." method="_on_toggle_background_button"]
 [connection signal="toggled" from="MarginContainer/Panel/DebugTools/CheckButton" to="." method="_on_toggle_background_button"]
 [connection signal="toggled" from="MarginContainer/Panel/DebugTools/ToggleHuds" to="." method="_on_ToggleHuds_toggled"]
