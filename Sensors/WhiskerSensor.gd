@@ -3,6 +3,7 @@ extends "BaseSensor.gd"
 onready var bodies = []
 onready var register = false
 onready var globals = get_node("/root/Globals")
+export onready var touching = [0, 0, 0, 0, 0, 0]
 
 signal whisk_sense_new
 
@@ -10,7 +11,7 @@ func _ready():
 	type = "whiskers"
 
 func _process(delta):
-	pass
+	print(touching)
 
 func _on_Area_body_entered(body):
 	bodies.append(body)
@@ -53,3 +54,51 @@ func render_label():
 		return ""
 	
 
+
+
+func _on_LL_body_entered():
+	touching[0] = 1
+
+
+func _on_LL_body_exited():
+	touching[0] = 0
+
+
+func _on_LM_body_entered():
+	touching[1] = 1
+
+
+func _on_LM_body_exited():
+	touching[1] = 0
+	
+
+func _on_LR_body_entered():
+	touching[2] = 1
+
+
+func _on_LR_body_exited():
+	touching[2] = 0
+
+
+func _on_RL_body_entered():
+	touching[3] = 1
+	
+
+func _on_RL_body_exited():
+	touching[3] = 0
+
+
+func _on_RM_body_entered():
+	touching[4] = 1
+
+
+func _on_RM_body_exited():
+	touching[4] = 0
+
+
+func _on_RR_body_entered():
+	touching[5] = 1
+
+
+func _on_RR_body_exited():
+	touching[5] = 0

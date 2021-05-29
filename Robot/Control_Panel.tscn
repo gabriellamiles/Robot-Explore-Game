@@ -181,6 +181,7 @@ margin_bottom = 240.0
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 70.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -201,6 +202,79 @@ rect_min_size = Vector2( 100, 100 )
 stretch_mode = 1
 alignment_horizontal = 0
 
+[node name="Texture_display" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer"]
+margin_right = 204.0
+margin_bottom = 204.0
+texture = ExtResource( 21 )
+expand = true
+stretch_mode = 1
+
+[node name="Whisker_animation" type="AnimatedSprite" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer/Texture_display"]
+position = Vector2( 102, 102 )
+scale = Vector2( 0.41, 0.41 )
+frames = SubResource( 3 )
+animation = "idle"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+margin_left = 254.95
+margin_top = 24.3137
+margin_right = 274.95
+margin_bottom = 44.3137
+color = Color( 0.168627, 0.619608, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+margin_left = 286.95
+margin_top = 24.3137
+margin_right = 306.95
+margin_bottom = 44.3137
+color = Color( 0.168627, 0.619608, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+margin_left = 318.95
+margin_top = 24.3137
+margin_right = 338.95
+margin_bottom = 44.3137
+color = Color( 0.168627, 0.619608, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+margin_left = 350.95
+margin_top = 24.3137
+margin_right = 370.95
+margin_bottom = 44.3137
+color = Color( 0.168627, 0.619608, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+margin_left = 382.95
+margin_top = 24.3137
+margin_right = 402.95
+margin_bottom = 44.3137
+color = Color( 0.168627, 0.619608, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect6" type="ColorRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3"]
+margin_left = 414.95
+margin_top = 24.3137
+margin_right = 434.95
+margin_bottom = 44.3137
+color = Color( 0.168627, 0.619608, 0.0745098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Panel4" type="Panel" parent="MarginContainer/Panel/MarginContainer/GridContainer"]
 margin_left = 505.0
 margin_top = 265.0
@@ -209,17 +283,6 @@ margin_bottom = 520.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
->>>>>>> d38ac8599c614b250d28de5a2f3eade2c6ff1771
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Texture_display" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer"]
-margin_right = 204.0
-margin_bottom = 204.0
-texture = ExtResource( 21 )
-expand = true
-stretch_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel4"]
 anchor_right = 1.0
@@ -230,22 +293,16 @@ margin_right = -15.0
 margin_bottom = -7.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Whisker_animation" type="AnimatedSprite" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer/Texture_display"]
-position = Vector2( 102, 102 )
-scale = Vector2( 0.41, 0.41 )
-frames = SubResource( 3 )
-animation = "idle"
 
 [node name="HUD4" parent="MarginContainer/Panel/MarginContainer/GridContainer/Panel4/MarginContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 470.0
 margin_bottom = 240.0
+
 [node name="DebugTools" type="Control" parent="MarginContainer/Panel"]
 margin_left = 816.858
 margin_top = 0.709229

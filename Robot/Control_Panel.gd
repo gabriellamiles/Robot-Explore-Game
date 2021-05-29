@@ -8,6 +8,14 @@ onready var label_hud3 = $MarginContainer/Panel/MarginContainer/GridContainer/Pa
 onready var hud3_texture = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/AspectRatioContainer/Texture_display
 onready var hud4 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel4/MarginContainer/HUD4
 
+onready var hud3_w1 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/ColorRect
+onready var hud3_w2 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/ColorRect2
+onready var hud3_w3 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/ColorRect3
+onready var hud3_w4 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/ColorRect4
+onready var hud3_w5 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/ColorRect5
+onready var hud3_w6 = $MarginContainer/Panel/MarginContainer/GridContainer/Panel3/MarginContainer/HUD3/ColorRect6
+onready var whiskers = [hud3_w1, hud3_w2, hud3_w3, hud3_w4, hud3_w5, hud3_w6]
+
 onready var hud_to_id = [hud1, hud2, hud3,hud4]
 
 var sensor_to_class = null
@@ -46,6 +54,7 @@ func _process(_delta):
 						
 					_render_label_to_hud(text, label_hud3)
 					hud3_texture.texture = texture
+					set_color_rect(sclass.touching)
 				else:
 					_render_texture_to_hud(texture, hud)
 			if sensor_descriptions != null:
@@ -67,6 +76,13 @@ func _render_texture_to_hud(texture, hud):
 	itex.create_from_image(image)
 	
 	hud.set_render_target(itex)
+	
+func set_color_rect(touching):
+	for i in range(len(touching)):
+		if touching[i] == 1:
+			whiskers[i].color = Color(1, 0.38, 0, 1)
+		else:
+			whiskers[i].color = Color(0.17, 0.62, 0.07, 1)
 	
 func _render_label_to_hud(text, label):
 	label.set_text(text)

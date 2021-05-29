@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sensors/WhiskerSensor.gd" type="Script" id=1]
 
@@ -6,6 +6,18 @@
 extents = Vector3( 1.80593, 0.681538, 0.441719 )
 
 [sub_resource type="CylinderMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[sub_resource type="BoxShape" id=5]
+
+[sub_resource type="BoxShape" id=6]
+
+[sub_resource type="BoxShape" id=7]
+
+[sub_resource type="BoxShape" id=8]
 
 [node name="Whiskers" type="RigidBody"]
 script = ExtResource( 1 )
@@ -15,42 +27,92 @@ transform = Transform( 0.25, 0, 0, 0, 0.3, 0, 0, 0, 0.8, 0, 0, -0.442 )
 shape = SubResource( 1 )
 
 [node name="Area" type="Area" parent="CollisionShape2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00834846, -0.0111229, 0.000899792 )
+transform = Transform( 1, 0, 0, 0, 1.16677, 0, 0, 0, 1, 0.00834846, -0.0111229, 0.000899792 )
 collision_layer = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="CollisionShape2/Area"]
+transform = Transform( 1.48173, 0, 0, 0, 0.326573, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="Left_Mid_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
-transform = Transform( -6.01693e-10, -0.799643, -0.00641879, 0.0151881, -3.85669e-08, 0, -2.80574e-10, -0.37288, 0.0137651, -0.895, 0, 0.0195532 )
+[node name="Left_Bottom_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
+transform = Transform( -1.73105e-11, -0.663981, -0.00341418, 0.0398601, 2.07058e-07, -8.50099e-09, 3.47305e-09, -0.352291, 0.014128, -1.11356, 0, 0.0346973 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Right_Top_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
-transform = Transform( 0.00356268, 0.772396, 0.00641879, -0.0146706, 0.228358, 0, -0.0016613, -0.360174, 0.0137651, 0.895, 0.387, 0.0200395 )
-mesh = SubResource( 2 )
-material/0 = null
+[node name="LL" type="Area" parent="CollisionShape2/Area/CollisionShape/Left_Bottom_Whisker"]
+transform = Transform( 1, 9.09495e-13, -1.42109e-14, 3.33067e-16, 1, 1.39698e-09, -7.10543e-14, 3.8147e-06, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CollisionShape2/Area/CollisionShape/Left_Bottom_Whisker/LL"]
+transform = Transform( 0.999999, -2.27374e-13, 1.84741e-13, 7.77156e-16, 0.190175, 3.25963e-09, -1.13687e-13, 4.76837e-07, 0.999999, 2.70605e-05, 0.83373, 7.62939e-06 )
+shape = SubResource( 3 )
 
 [node name="Left_Top_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
-transform = Transform( 0.00356268, -0.772396, -0.00641879, 0.0146706, 0.228358, 0, 0.0016613, -0.360174, 0.0137651, -0.895, 0.386515, 0.0195532 )
+transform = Transform( -3.28843e-10, -0.300922, -0.00993489, 0.0393664, -6.88304e-08, 1.06839e-16, -4.38729e-10, -0.401478, 0.0163492, -0.310447, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Left_Bottom_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
-transform = Transform( 0.00356268, 0.772396, -0.00641879, -0.0146706, 0.228358, 0, 0.0016613, 0.360174, 0.0137651, -0.895, -0.3689, 0.0195532 )
+[node name="LR" type="Area" parent="CollisionShape2/Area/CollisionShape/Left_Top_Whisker"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CollisionShape2/Area/CollisionShape/Left_Top_Whisker/LR"]
+transform = Transform( 1, 0, 0, 0, 0.19, 0, 0, 0, 1, 0, 0.834, 0 )
+shape = SubResource( 4 )
+
+[node name="Left_Mid_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
+transform = Transform( -4.06072e-10, -0.539667, -0.00433194, 0.0398601, -1.01216e-07, -7.91516e-16, -2.80573e-10, -0.37288, 0.0137651, -0.760973, 0.0221961, 0.0109397 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="LM" type="Area" parent="CollisionShape2/Area/CollisionShape/Left_Mid_Whisker"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CollisionShape2/Area/CollisionShape/Left_Mid_Whisker/LM"]
+transform = Transform( 1, 0, 0, 0, 0.19, 0, 0, 0, 1, 0, 0.834, 0 )
+shape = SubResource( 5 )
+
+[node name="Right_Top_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
+transform = Transform( -3.28687e-10, -0.300779, 0.00993016, 0.0393476, -6.87976e-08, 0, 4.3852e-10, 0.401287, 0.0163414, 0.310447, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="RL" type="Area" parent="CollisionShape2/Area/CollisionShape/Right_Top_Whisker"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CollisionShape2/Area/CollisionShape/Right_Top_Whisker/RL"]
+transform = Transform( 1, 0, 0, 0, 0.19, 0, 0, 0, 1, 0, -0.834, 0 )
+shape = SubResource( 6 )
 
 [node name="Right_Bottom_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
-transform = Transform( 0.00356268, -0.772396, 0.00641879, 0.0146706, 0.228358, 0, -0.0016613, 0.360174, 0.0137651, 0.895, -0.369, 0.0200395 )
+transform = Transform( -4.16603e-10, -0.663976, 0.00341251, 0.0393664, -1.1988e-07, 0, 2.21024e-10, 0.352264, 0.0141221, 1.11356, 0, 0.0350001 )
 mesh = SubResource( 2 )
 material/0 = null
 
+[node name="RR" type="Area" parent="CollisionShape2/Area/CollisionShape/Right_Bottom_Whisker"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CollisionShape2/Area/CollisionShape/Right_Bottom_Whisker/RR"]
+transform = Transform( 1, 0, 0, 0, 0.19, 0, 0, 0, 1, 0, -0.834, 0 )
+shape = SubResource( 7 )
+
 [node name="Right_Mid_Whisker" type="MeshInstance" parent="CollisionShape2/Area/CollisionShape"]
-transform = Transform( -6.01693e-10, -0.799643, 0.00641879, 0.0151881, -3.85669e-08, 0, 2.80574e-10, 0.37288, 0.0137651, 0.895, 0, 0.0200395 )
+transform = Transform( -4.06072e-10, -0.539667, 0.00433194, 0.0398601, -1.01216e-07, 6.84677e-16, 2.80573e-10, 0.37288, 0.0137651, 0.76127, 0.0209954, 0.011 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="RM" type="Area" parent="CollisionShape2/Area/CollisionShape/Right_Mid_Whisker"]
+
+[node name="CollisionShape" type="CollisionShape" parent="CollisionShape2/Area/CollisionShape/Right_Mid_Whisker/RM"]
+transform = Transform( 1, 0, 0, 0, 0.19, 0, 0, 0, 1, 0, -0.834, 0 )
+shape = SubResource( 8 )
 
 [connection signal="whisk_sense_new" from="." to="." method="_on_Whiskers_whisk_sense_new"]
 [connection signal="body_entered" from="CollisionShape2/Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="CollisionShape2/Area" to="." method="_on_Area_body_exited"]
+[connection signal="body_entered" from="CollisionShape2/Area/CollisionShape/Left_Bottom_Whisker/LL" to="." method="_on_LL_body_entered"]
+[connection signal="body_exited" from="CollisionShape2/Area/CollisionShape/Left_Bottom_Whisker/LL" to="." method="_on_LL_body_exited"]
+[connection signal="body_entered" from="CollisionShape2/Area/CollisionShape/Left_Top_Whisker/LR" to="." method="_on_LR_body_entered"]
+[connection signal="body_exited" from="CollisionShape2/Area/CollisionShape/Left_Top_Whisker/LR" to="." method="_on_LR_body_exited"]
+[connection signal="body_entered" from="CollisionShape2/Area/CollisionShape/Left_Mid_Whisker/LM" to="." method="_on_LM_body_entered"]
+[connection signal="body_exited" from="CollisionShape2/Area/CollisionShape/Left_Mid_Whisker/LM" to="." method="_on_LM_body_exited"]
+[connection signal="body_entered" from="CollisionShape2/Area/CollisionShape/Right_Top_Whisker/RL" to="." method="_on_RL_body_entered"]
+[connection signal="body_exited" from="CollisionShape2/Area/CollisionShape/Right_Top_Whisker/RL" to="." method="_on_RL_body_exited"]
+[connection signal="body_entered" from="CollisionShape2/Area/CollisionShape/Right_Bottom_Whisker/RR" to="." method="_on_RR_body_entered"]
+[connection signal="body_exited" from="CollisionShape2/Area/CollisionShape/Right_Bottom_Whisker/RR" to="." method="_on_RR_body_exited"]
+[connection signal="body_entered" from="CollisionShape2/Area/CollisionShape/Right_Mid_Whisker/RM" to="." method="_on_RM_body_entered"]
+[connection signal="body_exited" from="CollisionShape2/Area/CollisionShape/Right_Mid_Whisker/RM" to="." method="_on_RM_body_exited"]
