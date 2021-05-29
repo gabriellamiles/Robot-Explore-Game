@@ -2,6 +2,9 @@ extends VehicleBody
 
 const STEER_SPEED = 1.5
 const STEER_LIMIT = 0.4
+const FLIPPED_ANGLE = 80 # Angle at which we'll consider the robot to have
+						 # around X or Z axis. If the rotation on X or Z axis
+						 # is greater than this, then we'll intervene to fix that.
 
 var steer_target = 0
 
@@ -49,5 +52,15 @@ func _physics_process(delta):
 			brake = 1
 	else:
 		brake = 0.0
-
+	
+	# Try to prevent the robot from flipping over.
+	# If its rotations look bad, then fix them
+	var robot_rotation = get_rotation_degrees()
+	if (abs(robot_rotation.z) > FLIPPED_ANGLE):
+		# If rotation around Z axis is too great, then reset it.
+		set_rotation_degrees(Vector3(robot_rotation.x, robot_rotation.y, 0))
+	elif (abs(robot_rotation.x) > FLIPPED_ANGLE):
+		# If rotation around X axis is too great, then reset it.
+		set_rotation_degrees(Vector3(0, robot_rotation.y, robot_rotation.z))
+		
 	steering = move_toward(steering, steer_target, STEER_SPEED * delta)
